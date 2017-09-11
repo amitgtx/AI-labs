@@ -1,0 +1,23 @@
+-Variables start with Capital Letters
+• constants start with small letters
+• Rules will be matched top to bottom. If one matching rule fails, the next matching rule will
+be evaluated.
+• Don't forget the base cases for recursive rules.
+• Not( rules ) succeeds if rules cannot be satisfied.
+
+
+Starting prolog : swipl
+Loading program : ['<file_name>'] or consult(file_name)
+Conjunction :  ,
+Disjunction :  ;
+Negation :     \+
+Trace on :    trace
+Trace off :   notrace
+Debug on :    debug
+Debug off :   nodebug
+Print other outputs : ;
+Constants/Atoms :	<string_starting_with_small_letter>
+Variables :	<string_starting_with_capital_letter>
+Comments :	%(single-line), /* */ (multi-line)
+Enter console mode : [user].
+Exit console mode :	Ctrl+D
