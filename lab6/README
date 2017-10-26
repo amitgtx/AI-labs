@@ -1,0 +1,9 @@
+Today we'll see an implementation Bayesian networks in Prolog.
+- The lab is based on chapter 16: Probabilistic Reasoning with Bayesian Networks from Bratko (4th ed.)
+- Go through the code of bayesian_network.prolog and try to understand it.
+- Implement the Burglar example given in Bratko ( Page 371 - 374 ) and try some queries.
+	- Check that p(sensor|burglary) = 0.9
+	- Find p(alarm|burglary)
+	
+- Open BayesNetExample.html and try the question ( Identify and verify conditional & total independence relations )
+
