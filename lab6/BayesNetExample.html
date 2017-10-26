@@ -1,0 +1,173 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><title> Bayesian Net Example</title>
+</head><body><h2> Bayesian Net Example</h2>
+
+
+Consider the following Bayesian network:
+
+<p align="center">
+<img src="Bayesian%20Net%20Example_files/bayes.gif">
+</p>
+
+<!--
+Thus, the independence expressed in this Bayesian net are that <br>
+A and B are (absolutely) independent. <br>
+C is independent of B given A.  <br>
+D is independent of C given A and B. <br>
+E is independent of A, B, and D given C. <br>
+-->
+<p>
+Suppose that the net further records the following probabilities:
+</p><blockquote>
+Prob(A=T) = 0.3 <br>
+Prob(B=T) = 0.6 <br>
+Prob(C=T|A=T) = 0.8 <br>
+Prob(C=T|A=F) = 0.4 <br>
+Prob(D=T|A=T,B=T) = 0.7 <br>
+Prob(D=T|A=T,B=F) = 0.8 <br>
+Prob(D=T|A=F,B=T) = 0.1 <br>
+Prob(D=T|A=F,B=F) = 0.2 <br>
+Prob(E=T|C=T) = 0.7 <br>
+Prob(E=T|C=F) = 0.2
+</blockquote>
+<p> There is one absolute independence and 3 conditional independence statements that you can see from this network. Find them and verify them </p>
+<p>( Don't look at the source of this page ) </p>
+<!--
+Some sample computations:
+
+
+<h4> Prob(D=T) </h4>
+<p>
+P(D=T) = 
+</p><p>
+P(D=T,A=T,B=T) +
+P(D=T,A=T,B=F) +
+P(D=T,A=F,B=T) +
+P(D=T,A=F,B=F) = 
+</p><p>
+P(D=T|A=T,B=T) P(A=T,B=T) +
+P(D=T|A=T,B=F) P(A=T,B=F) + <br>
+P(D=T|A=F,B=T) P(A=F,B=T) +
+P(D=T|A=F,B=F) P(A=F,B=F) = <br> 
+(since A and B are independent absolutely) 
+
+</p><p>
+P(D=T|A=T,B=T) P(A=T) P(B=T) +
+P(D=T|A=T,B=F) P(A=T) P(B=F) + <br>
+P(D=T|A=F,B=T) P(A=F) P(B=T) +
+P(D=T|A=F,B=F) P(A=F) P(B=F) = 
+
+</p><p>
+0.7*0.3*0.6 + 0.8*0.3*0.4 + 0.1*0.7*0.6 + 0.2*0.7*0.4 = 0.32
+
+</p><h4> Prob(D=F,C=T) </h4>
+P(D=F,C=T) = 
+<p>
+P(D=F,C=T,A=T,B=T) +
+P(D=F,C=T,A=T,B=F) + <br>
+P(D=F,C=T,A=F,B=T) +
+P(D=F,C=T,A=F,B=F) = 
+</p><p>
+P(D=F,C=T|A=T,B=T) P(A=T,B=T) +
+P(D=F,C=T|A=T,B=F) P(A=T,B=F) + <br>
+P(D=F,C=T|A=F,B=T) P(A=F,B=T) +
+P(D=F,C=T|A=F,B=F) P(A=F,B=F) = <br>
+(since C and D are independent given A and B)
+
+</p><p>
+P(D=F|A=T,B=T) P(C=T|A=T,B=T) P(A=T,B=T) +
+P(D=F|A=T,B=F) P(C=T|A=T,B=F) P(A=T,B=F) + <br>
+P(D=F|A=F,B=T) P(C=T|A=F,B=T) P(A=F,B=T) +
+P(D=F|A=F,B=F) P(C=T|A=F,B=F) P(A=F,B=F) = <br>
+(since C is independent of B given A
+and A and B are independent absolutely) 
+
+</p><p>
+P(D=F|A=T,B=T) P(C=T|A=T) P(A=T) P(B=T) +
+P(D=F|A=T,B=F) P(C=T|A=T) P(A=T) P(B=F) +
+P(D=F|A=F,B=T) P(C=T|A=F) P(A=F) P(B=T) +
+P(D=F|A=F,B=F) P(C=T|A=F) P(A=F) P(B=F) = 
+
+</p><p>
+0.3*0.8*0.3*0.6 + 0.2*0.8*0.3*0.4 + 0.9*0.4*0.7*0.6 + 0.8*0.4*0.7*0.4 = 0.3032
+
+
+</p><h4> Prob(A=T|C=T) </h4>
+
+<p>
+P(A=T|C=T) = P(C=T|A=T)P(A=T) / P(C=T). <br>
+
+</p><p>
+Now P(C=T) = P(C=T,A=T) + P(C=T,A=F) = <br>
+P(C=T|A=T)P(A=T) + P(C=T|A=F)P(A=F)  = <br>
+0.8*0.3+ 0.4*0.7 = 0.52 
+
+</p><p>
+So 
+P(C=T|A=T)P(A=T) / P(C=T) = 0.8*0.3/0.52= 0.46.
+
+</p><h4> Prob(A=T|D=F) </h4>
+P(A=T|D=F) = 
+
+<p>
+P(D=F|A=T) P(A=T)/P(D=F). 
+
+</p><p>
+Now P(D=F) = 1-P(D=T) = 0.68 from the first question above. <br>
+
+</p><p>
+P(D=F|A=T) = P(D=T,B=T|A=T) + P(D=F,B=F|A=T) =
+
+</p><p>
+P(D=F|B=T,A=T) P(B=T|A=T) + P(D=F|B=F,A=T) P(B=F|A=T) = <br>
+(since B is independent of A)
+
+</p><p>
+P(D=F|B=T,A=T) P(B=T) + P(D=F|B=F,A=T) P(B=F) = 0.3*0.6 + 0.2*0.4 = 0.26. <br>
+So P(A=T|D=F) = P(D=F|A=T) P(A=T)/P(D=F) = 0.26 * 0.3 / 0.68 = 0.115
+
+</p><h4> Prob(A=T,D=T|B=F). </h4>
+P(A=T,D=T|B=F) = 
+
+<p>
+P(D=T|A=T,B=F) P(A=T|B=F) = <br>
+(since A and B are independent)
+
+</p><p>
+P(D=T|A=T,B=F) P(A=T) = 0.8*0.3 = 0.24. 
+
+
+</p><h4> Prob(C=T | A=F, E=T) </h4>
+Prob(C=T | A=F, E=T) = (By Bayes' law)
+
+<p>
+Prob(E=T|C=T,A=F) * Prob(C=T|A=F) / Prob(E=T|A=F) = (since E is independent of 
+A given C)
+
+</p><p>
+Prob(E=T|C=T) * Prob(C=T|A=F) / Prob(E=T|A=F).
+
+</p><p>
+Now Prob(E=T|A=F) = Prob(E=T,C=T|A=F) + Prob(E=T,C=F|A=F) = 
+
+</p><p>
+Prob(E=T|C=T,A=F) Prob(C=T|A=F) +
+Prob(E=T|C=F,A=F) Prob(C=F|A=F)  = (since E is independent of A given C)
+
+</p><p>
+Prob(E=T|C=T) * Prob(C=T|A=F) +
+Prob(E=T|C=F) * Prob(C=F|A=F).
+
+</p><p>
+So we have <br>
+Prob(C=T | A=F, E=T) = <br>
+Prob(E=T|C=T) * Prob(C=T|A=F) /
+(Prob(E=T|C=T) * Prob(C=T|A=F) +
+Prob(E=T|C=F) * Prob(C=F|A=F)) = 
+
+</p><p>
+0.7*0.4 / (0.7 * 0.4 + 0.2 * 0.6) = 0.7
+</p>
+!-->
+<p> Taken from: <a href="http://cs.nyu.edu/faculty/davise/ai/bayesnet.html">http://cs.nyu.edu/faculty/davise/ai/bayesnet.html</a></p>
+</body></html>
